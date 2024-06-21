@@ -8,6 +8,19 @@
   </head>
   <body>
     <div class="chat-container">
+      <h1 id="roomHeading"></h1>
+      <a href="#" id="userCountLink"
+        >Number of users: <span id="userCount">0</span></a
+      >
+
+      <!-- The Modal -->
+      <div id="userModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>List of Users</h2>
+          <ul id="userList"></ul>
+        </div>
+      </div>
       <div class="messages" id="messages"></div>
 
       <form id="newMessageForm">

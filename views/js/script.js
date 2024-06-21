@@ -4,10 +4,18 @@ const { username, room } = Qs.parse(location.search, {
 });
 
 console.log({ username, room });
+document.getElementById("roomHeading").innerText = room;
+
+socket.emit("join_room", { username, room });
 
 // debug message from the server
-socket.on("consolemsg", (msg) => {
+socket.on("console_msg", (msg) => {
   console.log(msg); // app
+});
+
+socket.on("system_msg", (msg) => {
+  console.log(msg);
+  appendSystemMessage(msg); // app
 });
 
 // messages to be added to chat window
@@ -24,7 +32,7 @@ newMsgForm.addEventListener("submit", (e) => {
   console.log(msg);
 
   // emit to server
-  socket.emit("chat message", msg);
+  socket.emit("chat_message", msg);
   document.getElementById("messageInput").value = "";
 });
 
@@ -45,3 +53,55 @@ function appendMessage(msg) {
 
   if (autoScrollEnabled) messages.scrollTop = messages.scrollHeight;
 }
+
+function appendSystemMessage(msg) {
+  var messages = document.getElementById("messages");
+  const systemMsg = `<p class='systemMsg'>${msg}</p>`;
+
+  messages.insertAdjacentHTML("beforeend", systemMsg);
+  const autoScrollEnabled =
+    document.getElementById("autoScrollCheckbox").checked;
+
+  if (autoScrollEnabled) messages.scrollTop = messages.scrollHeight;
+}
+
+/* USER LIST MODAL */
+
+socket.on("room_users", ({ room, users }) => {
+  console.log(room);
+  console.log(users);
+  updateUserCountAndList(users);
+});
+
+// Function to update the user count and user list
+function updateUserCountAndList(users) {
+  const userCount = users.length;
+  document.getElementById("userCount").textContent = userCount;
+
+  const userList = document.getElementById("userList");
+  userList.innerHTML = ""; // Clear existing list
+  users.forEach((user) => {
+    const li = document.createElement("li");
+    li.textContent = user.username;
+    userList.appendChild(li);
+  });
+}
+
+// Modal functionality
+const modal = document.getElementById("userModal");
+const userCountLink = document.getElementById("userCountLink");
+const span = document.getElementsByClassName("close")[0];
+
+userCountLink.onclick = function () {
+  modal.style.display = "block";
+};
+
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
