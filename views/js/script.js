@@ -2,7 +2,7 @@ var socket = io();
 const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
-
+console.log("tst");
 console.log({ username, room });
 document.getElementById("roomHeading").innerText = room;
 
@@ -39,6 +39,7 @@ newMsgForm.addEventListener("submit", (e) => {
 // add received message to window
 function appendMessage(msg) {
   var messages = document.getElementById("messages");
+  var messagesDiv = document.getElementById("messages-container");
   const bubble = `<div class="message-bubble">
           <div class="message-header">
             <span class="message-username">${msg.username}</span>
@@ -51,18 +52,19 @@ function appendMessage(msg) {
   const autoScrollEnabled =
     document.getElementById("autoScrollCheckbox").checked;
 
-  if (autoScrollEnabled) messages.scrollTop = messages.scrollHeight;
+  if (autoScrollEnabled) messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
 function appendSystemMessage(msg) {
   var messages = document.getElementById("messages");
+  var messagesDiv = document.getElementById("messages-container");
   const systemMsg = `<p class='systemMsg'>${msg}</p>`;
 
   messages.insertAdjacentHTML("beforeend", systemMsg);
   const autoScrollEnabled =
     document.getElementById("autoScrollCheckbox").checked;
 
-  if (autoScrollEnabled) messages.scrollTop = messages.scrollHeight;
+  if (autoScrollEnabled) messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
 /* USER LIST MODAL */
@@ -76,6 +78,7 @@ socket.on("room_users", ({ room, users }) => {
 // Function to update the user count and user list
 function updateUserCountAndList(users) {
   const userCount = users.length;
+  console.log("userCount:" + userCount);
   document.getElementById("userCount").textContent = userCount;
 
   const userList = document.getElementById("userList");

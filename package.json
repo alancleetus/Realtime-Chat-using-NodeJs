@@ -12,6 +12,7 @@
   "author": "Alan C",
   "license": "ISC",
   "dependencies": {
+    "@tailwindcss/forms": "^0.5.7",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "moment": "^2.30.1",

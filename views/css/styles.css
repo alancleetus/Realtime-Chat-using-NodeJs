@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* 
 body {
   display: flex;
   flex-direction: column;
@@ -175,4 +175,4 @@ body {
   color: black;
   text-decoration: none;
   cursor: pointer;
-}
+} */

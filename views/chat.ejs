@@ -4,45 +4,102 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat Application</title>
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/output.css" />
   </head>
-  <body>
-    <div class="chat-container">
-      <h1 id="roomHeading"></h1>
-      <a href="#" id="userCountLink"
-        >Number of users: <span id="userCount">0</span></a
+  <body class="bg-gray-100">
+    <!-- hamburger button -->
+    <button
+      data-drawer-target="default-sidebar"
+      data-drawer-toggle="default-sidebar"
+      aria-controls="default-sidebar"
+      type="button"
+      class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+    >
+      <span class="sr-only">Open sidebar</span>
+      <svg
+        class="w-6 h-6"
+        aria-hidden="true"
+        fill="currentColor"
+        viewBox="0 0 20 20"
       >
-
-      <!-- The Modal -->
-      <div id="userModal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h2>List of Users</h2>
-          <ul id="userList"></ul>
+        <path
+          clip-rule="evenodd"
+          fill-rule="evenodd"
+          d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+        ></path>
+      </svg>
+    </button>
+    <!-- sidebar -->
+    <aside
+      id="default-sidebar"
+      class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+      aria-label="Sidebar"
+    >
+      <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <ul class="space-y-2 font-medium">
+          <li>
+            <h1
+              id="roomHeading"
+              class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            >
+              <span class="flex-1 ms-3"></span>
+            </h1>
+          </li>
+          <li>
+            <p
+              class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            >
+              Users
+              <span class="flex-1 ms-3" id="userCount">(0)</span>
+            </p>
+          </li>
+        </ul>
+        <ul
+          class="space-y-2 font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+          id="userList"
+        ></ul>
+        
+      <div  id="autoScrollSpan" class="flex items-center sticky bottom-0 ">
+        <input checked 
+        id="autoScrollCheckbox" type="checkbox"  
+        name="autoScroll" class="w-4 h-4 text-orange-600 bg-gray-100 border-gray-300 rounded focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+        <label for="checked-checkbox" class="ms-2 text-sm font-medium text-white px-2 dark:text-gray-300">Enable Auto Scroll</label>
+      </div> 
+      
+    </aside>
+    <div class="flex flex-col h-screen sm:ml-64">
+      <!-- Ensure the container fills the viewport height -->
+      <!-- Chat container -->
+      <div class="flex flex-col flex-1 overflow-hidden">
+        <!-- Scrollable message area -->
+        <div id="messages-container" class="flex-1 overflow-y-auto p-4 bg-white shadow rounded-lg">
+          <div id="messages" class="space-y-2">
+            <!-- Messages will be dynamically inserted here -->
+          </div>
         </div>
-      </div>
-      <div class="messages" id="messages"></div>
-
-      <form id="newMessageForm">
-        <div class="input-container">
+        <!-- Sticky message form at the bottom -->
+        <form id="newMessageForm" class="flex sticky bottom-0 bg-white p-4">
           <input
             type="text"
             id="messageInput"
+            autocomplete="off" 
+            class="flex-1 rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white outline-none focus:ring-2 focus:ring-inset focus:ring-orange-600"
             placeholder="Type a message..."
-            autocomplete="off"
           />
-          <button id="sendButton">Send</button>
-        </div>
-      </form>
-      <span id="autoScrollSpan"
-        ><input
-          type="checkbox"
-          name="autoScroll"
-          id="autoScrollCheckbox"
-          checked="true"
-        />Enable Auto Scroll</span
-      >
+          <button
+            id="sendButton"               
+
+            class="px-8 rounded-r-lg bg-orange-600 text-white font-bold p-4 uppercase border-orange-500 border-t border-b border-r text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+          >
+            Send
+          </button>  
+          
+      </div>
     </div>
+        </form>
+      </div>
+    </div>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.12.1/qs.min.js"
       integrity="sha512-vuLOE4Fh9lfxaN9n81Vl1HwrqMYz9WKoNmsHNC7Hz7OWX4k4O7FjCyQ1tQ82RJExao+Fas40RLiS5PCfVRGgnQ=="
