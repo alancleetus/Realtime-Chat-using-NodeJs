@@ -11,6 +11,7 @@ const server = http.createServer(app); // Create HTTP server
 const io = new Server(server); // Create Socket.IO server
 
 app.use(express.static("views"));
+app.use("/css", express.static("dist"));
 
 /* routes */
 app.get("/", (req, res) => res.render("index.ejs"));
