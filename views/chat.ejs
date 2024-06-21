@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Application</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="chat-container">
+      <div class="messages" id="messages"></div>
+
+      <form id="newMessageForm">
+        <div class="input-container">
+          <input
+            type="text"
+            id="messageInput"
+            placeholder="Type a message..."
+            autocomplete="off"
+          />
+          <button id="sendButton">Send</button>
+        </div>
+      </form>
+      <span id="autoScrollSpan"
+        ><input
+          type="checkbox"
+          name="autoScroll"
+          id="autoScrollCheckbox"
+          checked="true"
+        />Enable Auto Scroll</span
+      >
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.12.1/qs.min.js"
+      integrity="sha512-vuLOE4Fh9lfxaN9n81Vl1HwrqMYz9WKoNmsHNC7Hz7OWX4k4O7FjCyQ1tQ82RJExao+Fas40RLiS5PCfVRGgnQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
