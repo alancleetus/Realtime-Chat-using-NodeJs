@@ -4,7 +4,7 @@
   data-drawer-toggle="default-sidebar"
   aria-controls="default-sidebar"
   type="button"
-  class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-700 rounded-lg sm:hidden hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+  class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-700 rounded-lg sm:hidden focus:outline-none focus:ring-0 dark:text-gray-300 dark:bg-gray-800 rounded shadow rounded-lg dark:shadow dark:rounded-lg text-gray-700 dark:text-gray-300"
 >
   <span class="sr-only">Open sidebar</span>
   <svg
@@ -26,9 +26,8 @@
 <!-- sidebar -->
 <aside
   id="default-sidebar"
-  class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-white dark:bg-gray-900"
+  class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-white shadow-md dark:bg-gray-900"
   aria-label="Sidebar"
-  style="border-right: 1px solid #ddd"
 >
   <div
     class="h-full px-4 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100"
@@ -37,7 +36,7 @@
       <li>
         <h1
           id="roomHeading"
-          class="flex items-center justify-center uppercase p-2 rounded-lg text-xl font-bold shadow-md group"
+          class="flex items-center justify-center uppercase p-2 rounded-lg text-xl font-bold group"
         >
           ROOM
         </h1>
@@ -45,32 +44,36 @@
       </li>
       <li>
         <p class="flex items-center p-2 rounded-lg group">
-          <svg
-            class="w-6 h-6 mr-2"
-            fill="none"
-            stroke="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 11c1.66 0 3-1.34 3-3S13.66 5 12 5 9 6.34 9 8s1.34 3 3 3zm0 2c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
-            />
-          </svg>
+          <img
+            src="res/user.svg"
+            id="moon-icon"
+            class="dark:hidden mr-2"
+            alt="Moon Icon"
+            style="width: 24px; height: 24px"
+          />
+
+          <!-- Sun icon for dark mode -->
+          <img
+            src="res/user_dark.svg"
+            id="sun-icon"
+            class="hidden dark:block mr-2"
+            alt="Sun Icon"
+            style="width: 24px; height: 24px"
+          />
           Users
           <span
             id="userCount"
-            class="flex justify-center items-center h-6 w-6 rounded-full bg-orange-500 text-white text-xs font-bold ml-auto"
+            class="flex justify-center items-center h-6 w-6 rounded-full bg-orange-400 text-white text-xs font-bold ml-auto"
           >
             0</span
           >
         </p>
-        <hr class="border-gray-300 dark:border-gray-700" />
       </li>
     </ul>
-    <ul class="space-y-2 items-center p-2 rounded-lg group" id="userList"></ul>
+    <ul
+      class="space-y-2 items-center p-2 rounded-lg group ml-8"
+      id="userList"
+    ></ul>
     <div
       class="absolute bottom-0 left-0 w-full bg-gray-200 dark:bg-gray-800 px-4 py-2"
     >
@@ -83,7 +86,7 @@
           id="autoScrollCheckbox"
           type="checkbox"
           name="autoScroll"
-          class="mr-2 text-orange-600 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2"
+          class="mr-2 text-orange-400 dark:text-orange-400 focus:ring-0 focus:outline-0"
         />
         Enable Auto Scroll
       </label>
