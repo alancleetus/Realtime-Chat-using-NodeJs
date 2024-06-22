@@ -9,15 +9,17 @@
   </head>
   <body class="bg-gray-100 dark:bg-gray-800 dark:text-white-500">
 
-    <%- include("partials/sidebar.ejs") %>
+  <div class="flex flex-col h-screen sm:ml-64">
+    
+  <%- include("partials/sidebar.ejs") %>
     
   <div class="absolute top-0 right-0 pt-4 pr-4">
     <%- include('partials/darkModeButton.ejs') %>
   </div>
-    <div class="flex flex-col h-screen sm:ml-64">
+  
       <!-- Ensure the container fills the viewport height -->
       <!-- Chat container -->
-      <div class="flex flex-col flex-1 m-3 mt-14 overflow-hidden  ">
+      <div class="flex flex-col flex-1 sm:m-3 sm:mt-14 overflow-hidden  ">
         <!-- Scrollable message area -->
         <div id="messages-container" class="flex-1 overflow-y-auto p-4 mb-3 bg-gray-100   dark:bg-gray-800 dark:text-white-500">
           <div id="messages" class="space-y-2">
