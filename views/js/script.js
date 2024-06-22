@@ -40,13 +40,13 @@ newMsgForm.addEventListener("submit", (e) => {
 function appendMessage(msg) {
   var messages = document.getElementById("messages");
   var messagesDiv = document.getElementById("messages-container");
-  const bubble = `<div class="message-bubble">
-          <div class="message-header">
-            <span class="message-username">${msg.username}</span>
-            <span class="message-time">${msg.time}</span>
-          </div>
-          <div class="message-content">${msg.text}</div>
-        </div>`;
+  const bubble = `<div class="message-bubble bg-orange-200 rounded-lg shadow p-3 my-2 mx-4">
+  <div class="message-header flex justify-between items-center mb-2">
+    <span class="message-username font-bold text-gray-800">${msg.username}</span>
+    <span class="message-time text-sm text-gray-500">${msg.time}</span>
+  </div>
+  <div class="message-content text-gray-600">${msg.text}</div>
+</div>`;
 
   messages.insertAdjacentHTML("beforeend", bubble);
   const autoScrollEnabled =
@@ -58,7 +58,7 @@ function appendMessage(msg) {
 function appendSystemMessage(msg) {
   var messages = document.getElementById("messages");
   var messagesDiv = document.getElementById("messages-container");
-  const systemMsg = `<p class='systemMsg'>${msg}</p>`;
+  const systemMsg = `<p class='systemMsg text-orange-500 italic text-center my-2 mx-4 text-sm'>${msg}</p>`;
 
   messages.insertAdjacentHTML("beforeend", systemMsg);
   const autoScrollEnabled =
