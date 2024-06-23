@@ -22,8 +22,11 @@ const server = http.createServer(app); // Create HTTP server
 const io = new Server(server); // Create Socket.IO server
 
 app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/css", express.static(path.join(__dirname, "dist")));
+app.use("/js", express.static(path.join(__dirname, "public/js")));
 
 /* routes */
 app.get("/", (req, res) => res.render("index.ejs"));
