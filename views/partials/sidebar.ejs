@@ -56,33 +56,37 @@
       class="h-full px-4 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100"
     >
       <ul class="space-y-2">
-        <li>
-          <h1
-            id="roomHeading"
+        <li><div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+          <div class="sm:mx-auto sm:w-full sm:max-w-sm"> 
+            <h1
             class="flex items-center justify-center uppercase p-2 rounded-lg text-xl font-bold group"
           >
-            ROOM
-          </h1>
+          <img src="res/chat-line-dark.svg" id="chat-icon" alt="Chat Icon" class=" dark:hidden w-6 h-6 mr-2" />
+          <img src="res/chat-line.svg" id="chat-icon" alt="Chat Icon" class=" hidden dark:block w-6 h-6 mr-2" />
+          <span
+            id="roomHeading"></span>
+        </h1> 
+          
           <hr class="border-gray-300 dark:border-gray-700" />
         </li>
         <li>
           <p class="flex items-center p-2 rounded-lg group">
             <img
               src="res/user.svg"
-              id="moon-icon"
-              class="dark:hidden mr-2"
-              alt="Moon Icon"
-              style="width: 24px; height: 24px"
+              id="user-icon"
+              class="dark:hidden mr-2  w-5 h-5"
+              alt="User Icon" 
             />
 
             <!-- Sun icon for dark mode -->
             <img
               src="res/user_dark.svg"
-              id="sun-icon"
-              class="hidden dark:block mr-2"
-              alt="Sun Icon"
-              style="width: 24px; height: 24px"
+              id="user-icon-dark"
+              class="hidden dark:block mr-2  w-5 h-5"
+              alt="User Icon Dark"
+               
             />
+
             Users
             <span
               id="userCount"

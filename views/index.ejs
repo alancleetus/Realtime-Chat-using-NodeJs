@@ -17,11 +17,13 @@
   <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
 
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <!-- <img class="mx-auto h-3 w-3" src="./res/logo.png" alt="Chat Bubble Logo"> -->
-        <h2 class="mt-0 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">
-          Real Time Chat Using Node.js</h2>
-      </div>
+      <div class="sm:mx-auto sm:w-full sm:max-w-sm"> 
+        <h2 class="mt-0 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white flex items-center justify-center">
+          <img src="res/chat-line-dark.svg" id="chat-icon" alt="Chat Icon" class=" dark:hidden w-6 h-6 mr-2" />
+          <img src="res/chat-line.svg" id="chat-icon" alt="Chat Icon" class=" hidden dark:block w-6 h-6 mr-2" />
+         Real Time Chat Using Node.js
+        </h2>
+    </div>
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form class="space-y-6" action="/chat">
           <div>
