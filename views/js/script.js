@@ -64,6 +64,7 @@ newMsgForm.addEventListener("submit", (e) => {
   // emit to server
   socket.emit("chat_message", msg);
   document.getElementById("messageInput").value = "";
+  document.getElementById("messageInput").focus();
 });
 
 // add received message to window
@@ -88,7 +89,7 @@ function appendMessage(msg) {
 function appendSystemMessage(msg) {
   var messages = document.getElementById("messages");
   var messagesDiv = document.getElementById("messages-container");
-  const systemMsg = `<p class='systemMsg dark:text-zinc-400 text-zinc-50 italic text-center my-2 mx-4 text-sm'>${msg}</p>`;
+  const systemMsg = `<p class='systemMsg dark:text-zinc-400 text-grey-100 italic text-center my-2 mx-4 text-sm'>${msg}</p>`;
 
   messages.insertAdjacentHTML("beforeend", systemMsg);
   const autoScrollEnabled =
@@ -119,22 +120,3 @@ function updateUserCountAndList(users) {
     userList.appendChild(li);
   });
 }
-
-// Modal functionality
-const modal = document.getElementById("userModal");
-const userCountLink = document.getElementById("userCountLink");
-const span = document.getElementsByClassName("close")[0];
-
-userCountLink.onclick = function () {
-  modal.style.display = "block";
-};
-
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};

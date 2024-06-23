@@ -1,95 +1,135 @@
-<!-- hamburger button -->
-<button
-  data-drawer-target="default-sidebar"
-  data-drawer-toggle="default-sidebar"
-  aria-controls="default-sidebar"
-  type="button"
-  class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-700 rounded-lg sm:hidden focus:outline-none focus:ring-0 dark:text-gray-300 dark:bg-gray-800 rounded shadow rounded-lg dark:shadow dark:rounded-lg text-gray-700 dark:text-gray-300"
->
-  <span class="sr-only">Open sidebar</span>
-  <svg
-    class="w-6 h-6"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
+<div id="sidebar-container">
+  <!-- Hamburger button -->
+  <button
+    data-drawer-target="default-sidebar"
+    data-drawer-toggle="default-sidebar"
+    aria-controls="default-sidebar"
+    id="hamburger"
+    type="button"
+    class="inline-flex sm:hidden items-center p-2 mt-2 ms-3 text-sm text-gray-700 rounded-lg focus:outline-none focus:ring-0 dark:text-gray-300 dark:bg-gray-800 rounded shadow dark:shadow"
   >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M4 6h16M4 12h16m-7 6h7"
-    ></path>
-  </svg>
-</button>
-
-<!-- sidebar -->
-<aside
-  id="default-sidebar"
-  class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-white shadow-md dark:bg-gray-900"
-  aria-label="Sidebar"
->
-  <div
-    class="h-full px-4 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100"
-  >
-    <ul class="space-y-2">
-      <li>
-        <h1
-          id="roomHeading"
-          class="flex items-center justify-center uppercase p-2 rounded-lg text-xl font-bold group"
-        >
-          ROOM
-        </h1>
-        <hr class="border-gray-300 dark:border-gray-700" />
-      </li>
-      <li>
-        <p class="flex items-center p-2 rounded-lg group">
-          <img
-            src="res/user.svg"
-            id="moon-icon"
-            class="dark:hidden mr-2"
-            alt="Moon Icon"
-            style="width: 24px; height: 24px"
-          />
-
-          <!-- Sun icon for dark mode -->
-          <img
-            src="res/user_dark.svg"
-            id="sun-icon"
-            class="hidden dark:block mr-2"
-            alt="Sun Icon"
-            style="width: 24px; height: 24px"
-          />
-          Users
-          <span
-            id="userCount"
-            class="flex justify-center items-center h-6 w-6 rounded-full bg-orange-400 text-white text-xs font-bold ml-auto"
-          >
-            0</span
-          >
-        </p>
-      </li>
-    </ul>
-    <ul
-      class="space-y-2 items-center p-2 rounded-lg group ml-8"
-      id="userList"
-    ></ul>
-    <div
-      class="absolute bottom-0 left-0 w-full bg-gray-200 dark:bg-gray-800 px-4 py-2"
+    <span class="sr-only">Open sidebar</span>
+    <svg
+      class="w-6 h-6"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <label
-        for="autoScrollCheckbox"
-        class="flex items-center text-sm font-medium text-gray-900 dark:text-gray-200"
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h16m-7 6h7"
+      ></path>
+    </svg>
+  </button>
+
+  <!-- sidebar -->
+  <aside
+    id="default-sidebar"
+    class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-white shadow-md dark:bg-gray-900"
+    aria-label="Sidebar"
+  >
+    <button
+      id="close-sidebar"
+      type="button"
+      class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-700 rounded-lg focus:outline-none focus:ring-0 dark:text-gray-300 dark:bg-gray-800 rounded shadow dark:shadow sm:hidden"
+    >
+      <span class="sr-only">Close sidebar</span>
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <input
-          checked
-          id="autoScrollCheckbox"
-          type="checkbox"
-          name="autoScroll"
-          class="mr-2 text-orange-400 dark:text-orange-400 focus:ring-0 focus:outline-0"
-        />
-        Enable Auto Scroll
-      </label>
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        ></path>
+      </svg>
+    </button>
+    <div
+      class="h-full px-4 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100"
+    >
+      <ul class="space-y-2">
+        <li>
+          <h1
+            id="roomHeading"
+            class="flex items-center justify-center uppercase p-2 rounded-lg text-xl font-bold group"
+          >
+            ROOM
+          </h1>
+          <hr class="border-gray-300 dark:border-gray-700" />
+        </li>
+        <li>
+          <p class="flex items-center p-2 rounded-lg group">
+            <img
+              src="res/user.svg"
+              id="moon-icon"
+              class="dark:hidden mr-2"
+              alt="Moon Icon"
+              style="width: 24px; height: 24px"
+            />
+
+            <!-- Sun icon for dark mode -->
+            <img
+              src="res/user_dark.svg"
+              id="sun-icon"
+              class="hidden dark:block mr-2"
+              alt="Sun Icon"
+              style="width: 24px; height: 24px"
+            />
+            Users
+            <span
+              id="userCount"
+              class="flex justify-center items-center h-6 w-6 rounded-full bg-orange-400 text-white text-xs font-bold ml-auto"
+            >
+              0</span
+            >
+          </p>
+        </li>
+      </ul>
+      <ul
+        class="space-y-2 items-center p-2 rounded-lg group ml-8"
+        id="userList"
+      ></ul>
+      <div
+        class="absolute bottom-0 left-0 w-full bg-gray-200 dark:bg-gray-800 px-4 py-2"
+      >
+        <label
+          for="autoScrollCheckbox"
+          class="flex items-center text-sm font-medium text-gray-900 dark:text-gray-200"
+        >
+          <input
+            checked
+            id="autoScrollCheckbox"
+            type="checkbox"
+            name="autoScroll"
+            class="mr-2 text-orange-400 dark:text-orange-400 focus:ring-0 focus:outline-0"
+          />
+          Enable Auto Scroll
+        </label>
+      </div>
     </div>
-  </div>
-</aside>
+  </aside>
+</div>
+<script>
+  // public/js/main.js
+  document.addEventListener("DOMContentLoaded", () => {
+    const hamburgerButton = document.getElementById("hamburger");
+    const closeButton = document.getElementById("close-sidebar");
+    const sidebar = document.getElementById("default-sidebar");
+
+    hamburgerButton.addEventListener("click", () => {
+      sidebar.classList.remove("-translate-x-full");
+    });
+
+    closeButton.addEventListener("click", () => {
+      sidebar.classList.add("-translate-x-full");
+    });
+  });
+</script>
