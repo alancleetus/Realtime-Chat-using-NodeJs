@@ -15,8 +15,8 @@ const port = process.env.PORT || 3000;
 const server = http.createServer(app); // Create HTTP server
 const io = new Server(server); // Create Socket.IO server
 
-app.use(express.static("public"));
-app.use("/css", express.static("dist"));
+app.use(express.static(__dirname + "public"));
+app.use("/css", express.static(__dirname + "dist"));
 
 /* routes */
 app.get("/", (req, res) => res.render("index.ejs"));
