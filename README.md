@@ -1,5 +1,5 @@
 
-# Realtime Chat Application using Express
+# Realtime Chat Application using Node.js, Express, and Socket.IO
 
 ## Introduction
 
