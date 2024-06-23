@@ -5,6 +5,8 @@
 
 Welcome to the Realtime Chat Application! This project is a feature-rich chat application built using Node.js, Express, and EJS, with real-time communication facilitated by WebSockets.
 
+[try it out here](https://realtime-chat-using-express-production.up.railway.app/)
+
 ## Features
 
 - Real-time messaging 
