@@ -5,46 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat Application</title>
     <link rel="stylesheet" href="./css/output.css" />
-     
   </head>
   <body class="bg-gray-100 dark:bg-gray-800 dark:text-white-500">
+    <div class="flex flex-col h-screen sm:ml-64">
+      <%- include("partials/sidebar.ejs") %>
 
-  <div class="flex flex-col h-screen sm:ml-64">
-    
-  <%- include("partials/sidebar.ejs") %>
-    
-  <div class="absolute top-0 right-0 pt-4 pr-4">
-    <%- include('partials/darkModeButton.ejs') %>
-  </div>
-  
+      <div class="absolute top-0 right-0 pt-4 pr-4">
+        <%- include('partials/darkModeButton.ejs') %>
+      </div>
+
       <!-- Ensure the container fills the viewport height -->
       <!-- Chat container -->
-      <div class="flex flex-col flex-1 sm:m-3 sm:mt-14 overflow-hidden  ">
+      <div class="flex flex-col flex-1 sm:m-3 sm:mt-14 overflow-hidden">
         <!-- Scrollable message area -->
-        <div id="messages-container" class="flex-1 overflow-y-auto p-4 mb-3 bg-gray-100   dark:bg-gray-800 dark:text-white-500">
+        <div
+          id="messages-container"
+          class="flex-1 overflow-y-auto p-4 mb-3 bg-gray-100 dark:bg-gray-800 dark:text-white-500"
+        >
           <div id="messages" class="space-y-2">
             <!-- Messages will be dynamically inserted here -->
           </div>
         </div>
         <!-- Sticky message form at the bottom -->
-        <form id="newMessageForm" class="flex sticky bottom-0     ">
+        <div
+          id="typing"
+          class="flex dark:text-zinc-400 text-zinc-50 italic text-center my-2 mx-4 text-sm"
+        ></div>
+
+        <form id="newMessageForm" class="flex sticky bottom-0">
           <input
             type="text"
             id="messageInput"
-            autocomplete="off" 
-            class="flex-1 rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 dark:border-gray-700 bg-white dark:text-white dark:bg-gray-700 dark:text-white-500  focus:ring-2 focus:ring-inset focus:ring-orange-600 dark:focus:ring-orange-600 "
+            autocomplete="off"
+            class="flex-1 rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 dark:border-gray-700 bg-white dark:text-white dark:bg-gray-700 dark:text-white-500 focus:ring-2 focus:ring-inset focus:ring-orange-600 dark:focus:ring-orange-600"
             placeholder="Type a message..."
           />
           <button
-            id="sendButton"               
-
+            id="sendButton"
             class="px-8 rounded-r-lg bg-orange-600 text-white font-bold p-4 uppercase border-orange-500 border-t border-b border-r text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
           >
             Send
-          </button>  
-          
-      </div>
-    </div>
+          </button>
         </form>
       </div>
     </div>

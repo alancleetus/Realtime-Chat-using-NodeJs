@@ -16,7 +16,7 @@ app.use("/css", express.static("dist"));
 /* routes */
 app.get("/", (req, res) => res.render("index.ejs"));
 app.get("/chat", (req, res) => res.render("chat.ejs"));
-
+const typingUsers = new Map();
 /*  SOCKET.IO
   Emit to current user:
     socket.emit("msg", "Welcome user");
@@ -53,6 +53,22 @@ io.on("connection", (socket) => {
     // user sends a message
     socket.on("chat_message", (msg) => {
       io.to(user.room).emit("chat_msg", formatMessage(user.username, msg));
+    });
+
+    // Handle typing events
+    socket.on("typing", ({ username, room }) => {
+      if (!typingUsers.has(room)) {
+        typingUsers.set(room, new Set());
+      }
+      typingUsers.get(room).add(username);
+      io.to(room).emit("typing", Array.from(typingUsers.get(room)));
+    });
+
+    socket.on("stop_typing", ({ username, room }) => {
+      if (typingUsers.has(room)) {
+        typingUsers.get(room).delete(username);
+        io.to(room).emit("stop_typing", Array.from(typingUsers.get(room)));
+      }
     });
 
     /* disconnect */
