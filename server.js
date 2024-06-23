@@ -15,7 +15,7 @@ const port = process.env.PORT || 3000;
 const server = http.createServer(app); // Create HTTP server
 const io = new Server(server); // Create Socket.IO server
 
-app.use(express.static("views"));
+app.use(express.static("public"));
 app.use("/css", express.static("dist"));
 
 /* routes */

@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "A real time chat application using express and node",
   "type": "module",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prod": "node index.js",
-    "dev": "npx tailwindcss -i ./views/css/styles.css -o ./dist/output.css && nodemon index.js"
+    "prod": "node server.js",
+    "dev": "npx tailwindcss -i ./views/css/styles.css -o ./dist/output.css && nodemon server.js"
   },
   "author": "Alan C",
   "license": "ISC",
