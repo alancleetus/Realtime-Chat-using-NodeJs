@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "npx tailwindcss -i ./views/css/styles.css -o ./dist/output.css && nodemon index.js"
   },
   "author": "Alan C",
   "license": "ISC",

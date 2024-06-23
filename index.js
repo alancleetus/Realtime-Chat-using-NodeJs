@@ -2,7 +2,12 @@ import http from "http";
 import express from "express";
 import { Server } from "socket.io";
 import formatMessage from "./utils/message.js";
-import { userJoin, userLeave, getRoomUsers } from "./utils/users.js";
+import {
+  userJoin,
+  userLeave,
+  getRoomUsers,
+  checkUserNameExists,
+} from "./utils/users.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -30,6 +35,10 @@ const typingUsers = new Map();
     io.to(user.room).emit....
 */
 io.on("connection", (socket) => {
+  socket.on("checkUsername", ({ username }) => {
+    socket.emit("usernameCheckResult", checkUserNameExists(username));
+  });
+
   socket.on("join_room", ({ username, room }) => {
     const user = userJoin(socket.id, username, room);
 
@@ -47,6 +56,7 @@ io.on("connection", (socket) => {
       room: user.room,
       users: getRoomUsers(room),
     });
+
     console.log("Users:");
     console.log(getRoomUsers(room));
 

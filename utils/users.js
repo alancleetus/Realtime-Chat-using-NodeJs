@@ -20,3 +20,7 @@ export function getUser(id) {
 export function getRoomUsers(room) {
   return users.filter((user) => user.room === room);
 }
+
+export function checkUserNameExists(username) {
+  return users.some((user) => user.username === username);
+}
