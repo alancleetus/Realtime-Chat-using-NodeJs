@@ -100,10 +100,13 @@
       <ul
         class="space-y-2 items-center p-2 rounded-lg group ml-8"
         id="userList"
-      ></ul>
+      ></ul><div class="flex flex-col justify-center px-6 py-12 lg:px-8">
+      <button id="download-chat" 
+        class="bg-transparent hover:bg-orange-500 text-orange-600 font-semibold hover:text-white py-2   px-4 border border-orange-500 hover:border-transparent rounded" />Download Chat</button></div> 
       <div
         class="absolute bottom-0 left-0 w-full bg-gray-200 dark:bg-gray-800 px-4 py-2"
       >
+      <hr class="border-gray-300 dark:border-gray-700" />
         <label
           for="autoScrollCheckbox"
           class="flex items-center text-sm font-medium text-gray-900 dark:text-gray-200"
@@ -117,7 +120,7 @@
           />
           Enable Auto Scroll
         </label>
-      </div>
+      </div>   
     </div>
   </aside>
 </div>
@@ -136,3 +139,38 @@
     });
   });
 </script>
+
+
+<script>
+  document.getElementById('download-chat').addEventListener('click', function() {
+      var messagesDiv = document.getElementById('messages-container');
+      var messageBubbles = messagesDiv.getElementsByClassName('message-bubble');
+      var chatData = [];
+  
+      for (var i = 0; i < messageBubbles.length; i++) {
+          var username = messageBubbles[i].getElementsByClassName('message-username')[0].innerText;
+          var time = messageBubbles[i].getElementsByClassName('message-time')[0].innerText;
+          var text = messageBubbles[i].getElementsByClassName('message-content')[0].innerText;
+  
+          chatData.push({
+              username: username,
+              time: time,
+              text: text
+          });
+      }
+  
+      // Convert chat data to a JSON string
+      var jsonData = JSON.stringify(chatData);
+  
+      // Create a Blob from the JSON string
+      var blob = new Blob([jsonData], {type: 'application/json'});
+  
+      // Create a link element, use it to download the blob, and then remove it
+      var url = URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'chat_history.json';
+      link.click();
+      URL.revokeObjectURL(url); // Clean up by revoking the object URL after use
+  });
+  </script>
