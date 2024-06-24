@@ -31,6 +31,10 @@ app.use("/js", express.static(path.join(__dirname, "public/js")));
 /* routes */
 app.get("/", (req, res) => res.render("index.ejs"));
 app.get("/chat", (req, res) => res.render("chat.ejs"));
+app.get("*", (req, res) => {
+  res.redirect("/");
+});
+
 const typingUsers = new Map();
 /*  SOCKET.IO
   Emit to current user:
