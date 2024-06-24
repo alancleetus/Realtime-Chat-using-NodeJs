@@ -117,6 +117,12 @@ function updateUserCountAndList(users) {
   users.forEach((user) => {
     const li = document.createElement("li");
     li.textContent = user.username;
-    userList.appendChild(li);
+
+    if (user.username == username) {
+      li.className = "text-orange-600 dark:text-orange-500";
+      userList.prepend(li);
+    } else {
+      userList.appendChild(li);
+    }
   });
 }
