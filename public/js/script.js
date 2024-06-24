@@ -6,6 +6,15 @@ if (!username || !room) {
   console.log("Redirect user to the home page if the parameters are missing");
   window.location.href = "/"; // Redirect to the homepage if credentials are missing
 } else {
+  /*************** Check for Duplicate username ***********************/
+  socket.emit("checkUsername", { username });
+  socket.on("usernameCheckResult", (isTaken) => {
+    if (isTaken) {
+      console.log("Redirecting to homepage. Username already taken.");
+      window.location.href = "/"; // Redirect to the homepage if username is already taken
+    }
+  });
+
   console.log("Access granted. Username and room are present.");
   /*************** Type Detection Start***********************/
   // Typing event handlers
