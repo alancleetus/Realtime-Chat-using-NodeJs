@@ -4,18 +4,18 @@ const htmlElement = document.documentElement;
 toggleButton.addEventListener("click", function () {
   if (htmlElement.classList.contains("dark")) {
     htmlElement.classList.remove("dark");
-    localStorage.setItem("theme", "light");
+    sessionStorage.setItem("theme", "light");
   } else {
     htmlElement.classList.add("dark");
-    localStorage.setItem("theme", "dark");
+    sessionStorage.setItem("theme", "dark");
   }
 });
 
-// Set the theme on initial load based on localStorage
+// Set the theme on initial load based on sessionStorage
 document.addEventListener("DOMContentLoaded", () => {
   if (
-    localStorage.getItem("theme") === "dark" ||
-    (!("theme" in localStorage) &&
+    sessionStorage.getItem("theme") === "dark" ||
+    (!("theme" in sessionStorage) &&
       window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
     htmlElement.classList.add("dark");
