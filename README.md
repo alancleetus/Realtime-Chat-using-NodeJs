@@ -7,11 +7,18 @@ Welcome to the Realtime Chat Application! This project is a feature-rich chat ap
 
 [try it out here](https://realtime-chat-using-express-production.up.railway.app/)
 
+![demo](https://github.com/alancleetus/Realtime-Chat-using-NodeJs/blob/main/Chat%20Demo.gif)
+
 ## Features
 
 - Real-time messaging 
 - Chat rooms
-- Responsive design using Tailwind CSS 
+- Responsive design using Tailwind CSS
+- Dark and Light mode themes
+- Real-time typing detection
+- Real-time username availability checking on the join screen
+- Dynamic enable/disable auto-scroll in the chat window
+- Download chat as JSON
 
 ## Installation
 
@@ -31,12 +38,16 @@ Welcome to the Realtime Chat Application! This project is a feature-rich chat ap
    ```sh
    npm start
    ```
+   or run on dev env using nodemon
+    ```sh
+   npm run dev
+   ```
 
 ## Usage
 
 1. Open your browser and navigate to `http://localhost:3000`.
-2. Register or log in with your credentials.
-3. Join or create a chat room and start messaging in real-time.
+2. Enter the desired username and select room.
+3. Click join and chat away.
 
 ## Technologies Used
 
