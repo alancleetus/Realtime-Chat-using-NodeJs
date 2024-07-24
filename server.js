@@ -1,7 +1,8 @@
 import http from "http";
 import express from "express";
 import { Server } from "socket.io";
-import formatMessage from "./utils/message.js";
+import moment from "moment";
+import { v4 as uuidv4 } from "uuid";
 import {
   userJoin,
   userLeave,
@@ -36,6 +37,7 @@ app.get("*", (req, res) => {
 });
 
 const typingUsers = new Map();
+const messages = [];
 /*  SOCKET.IO
   Emit to current user:
     socket.emit("msg", "Welcome user");
@@ -76,7 +78,19 @@ io.on("connection", (socket) => {
 
     // user sends a message
     socket.on("chat_message", (msg) => {
-      io.to(user.room).emit("chat_msg", formatMessage(user.username, msg));
+      console.log("emit chat message");
+      const message = {
+        id: uuidv4(),
+        username: user.username,
+        room: user.room,
+        text: msg,
+        time: moment().format("h:mm a"),
+        likes: 0,
+      };
+      messages.push(message);
+      console.log({ messages });
+      io.to(user.room).emit("chat_msg", message);
+      //io.to(user.room).emit("chat_msg", formatMessage(user.username, msg));
     });
 
     // Handle typing events

@@ -72,7 +72,6 @@ if (!username || !room) {
   newMsgForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const msg = e.target.elements[0].value;
-    console.log(msg);
 
     // emit to server
     socket.emit("chat_message", msg);
@@ -82,6 +81,9 @@ if (!username || !room) {
 
   // add received message to window
   function appendMessage(msg) {
+    console.log("append msg");
+    console.log({ msg });
+
     var messages = document.getElementById("messages");
     var messagesDiv = document.getElementById("messages-container");
     const bubble = `<div class="message-bubble bg-gray-300 dark:bg-gray-700 dark:text-gray-100 rounded-lg shadow p-3 my-2 mx-4">
