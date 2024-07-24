@@ -85,7 +85,7 @@ io.on("connection", (socket) => {
         room: user.room,
         text: msg,
         time: moment().format("h:mm a"),
-        likes: 0,
+        likes: ["test"],
       };
       messages.push(message);
       console.log({ messages });
@@ -106,6 +106,23 @@ io.on("connection", (socket) => {
       if (typingUsers.has(room)) {
         typingUsers.get(room).delete(username);
         io.to(room).emit("stop_typing", Array.from(typingUsers.get(room)));
+      }
+    });
+
+    socket.on("like_message", ({ messageId, username }) => {
+      const message = messages.find((m) => m.id === messageId);
+      console.log({ messageId, username });
+      if (message) {
+        if (!message.likes.includes(username)) {
+          message.likes.push(username);
+        } else {
+          message.likes = message.likes.filter((user) => user !== username);
+        }
+
+        io.to(user.room).emit("update_likes", {
+          messageId,
+          likes: message.likes,
+        });
       }
     });
 

@@ -92,13 +92,21 @@ if (!username || !room) {
     <span class="message-time text-sm text-gray-500 dark:text-gray-400">${msg.time}</span>
   </div>
   <div class="message-content text-lg text-gray-600 dark:text-gray-100">${msg.text}</div>
-</div>`;
+  <div class="message-likes text-sm text-gray-500 dark:text-gray-400">Likes: <span id="likeCount-${msg.id}">${msg.likes.length}</span> 
+  <button class="like-button" data-id="${msg.id}">Like</button></div>
+  </div> `;
 
     messages.insertAdjacentHTML("beforeend", bubble);
     const autoScrollEnabled =
       document.getElementById("autoScrollCheckbox").checked;
 
     if (autoScrollEnabled) messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    document.querySelectorAll(".like-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const messageId = button.getAttribute("data-id");
+        socket.emit("like_message", { messageId, username });
+      });
+    });
   }
 
   function appendSystemMessage(msg) {
@@ -119,6 +127,13 @@ if (!username || !room) {
     console.log(room);
     console.log(users);
     updateUserCountAndList(users);
+  });
+
+  socket.on("update_likes", ({ messageId, likes }) => {
+    const likeCountSpan = document.getElementById(`likeCount-${messageId}`);
+    if (likeCountSpan) {
+      likeCountSpan.textContent = likes.length;
+    }
   });
 
   // Function to update the user count and user list
