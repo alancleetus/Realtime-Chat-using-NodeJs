@@ -86,14 +86,23 @@ if (!username || !room) {
 
     var messages = document.getElementById("messages");
     var messagesDiv = document.getElementById("messages-container");
-    const bubble = `<div class="message-bubble bg-gray-300 dark:bg-gray-700 dark:text-gray-100 rounded-lg shadow p-3 my-2 mx-4">
+    let bubble = `<div class="message-bubble bg-gray-300 dark:bg-gray-700 dark:text-gray-100 rounded-lg shadow p-3 my-2 mx-4">
   <div class="message-header flex justify-between items-center mb-2">
     <span class="message-username italic text-gray-800 dark:text-gray-300">${msg.username}</span>
     <span class="message-time text-sm text-gray-500 dark:text-gray-400">${msg.time}</span>
   </div>
   <div class="message-content text-lg text-gray-600 dark:text-gray-100">${msg.text}</div>
-  <div class="message-likes text-sm text-gray-500 dark:text-gray-400">Likes: <span id="likeCount-${msg.id}">${msg.likes.length}</span> 
-  <button class="like-button" data-id="${msg.id}">Like</button></div>
+  `;
+
+    if (msg.likes.includes(username))
+      bubble += `
+  <div  id="likeIcon-${msg.id}" data-id="${msg.id}" class="like-icon message-likes"><span id="likeCount-${msg.id}"><img src="/res/like-filled.svg" width="20" height="20" alt="liked"/> 
+  ${msg.likes.length}</span> 
+  </div></div>  `;
+    else
+      bubble += `
+  <div  id="likeIcon-${msg.id}" data-id="${msg.id}" class="like-icon message-likes"> <span id="likeCount-${msg.id}"><img src="/res/like-outline.svg" width="20" height="20"  alt="not liked"/> 
+ ${msg.likes.length}</span> </div> 
   </div> `;
 
     messages.insertAdjacentHTML("beforeend", bubble);
@@ -101,7 +110,7 @@ if (!username || !room) {
       document.getElementById("autoScrollCheckbox").checked;
 
     if (autoScrollEnabled) messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    document.querySelectorAll(".like-button").forEach((button) => {
+    document.querySelectorAll(".like-icon").forEach((button) => {
       button.addEventListener("click", () => {
         const messageId = button.getAttribute("data-id");
         socket.emit("like_message", { messageId, username });
@@ -131,8 +140,13 @@ if (!username || !room) {
 
   socket.on("update_likes", ({ messageId, likes }) => {
     const likeCountSpan = document.getElementById(`likeCount-${messageId}`);
+    const likeIcon = document.getElementById(`likeIcon-${messageId}`);
     if (likeCountSpan) {
-      likeCountSpan.textContent = likes.length;
+      if (likeIcon) {
+        likeCountSpan.innerHTML = likes.includes(username)
+          ? `<div class="like-container"><img src="/res/like-filled.svg" width="20" height="20" alt="liked"/> <span class="like-count">${likes.length}</span></div>`
+          : `<div class="like-container"><img src="/res/like-outline.svg" width="20" height="20" alt="not liked"/> <span class="like-count">${likes.length}</span></div>`;
+      }
     }
   });
 
