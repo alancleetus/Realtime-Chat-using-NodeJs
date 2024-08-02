@@ -85,7 +85,7 @@ io.on("connection", (socket) => {
         room: user.room,
         text: msg,
         time: moment().format("h:mm a"),
-        likes: ["test"],
+        likes: [],
       };
       messages.push(message);
       console.log({ messages });
