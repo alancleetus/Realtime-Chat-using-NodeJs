@@ -1,0 +1,15 @@
+.message-likes {
+  display: flex;
+  align-items: center; /* Align items vertically center */
+  justify-content: flex-end; /* Align items to the right */
+}
+
+.like-icon img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.like-count {
+  display: inline-block;
+}
